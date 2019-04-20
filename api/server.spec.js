@@ -6,4 +6,9 @@ describe('GET /games', () => {
     const res = await request(server).get('/games');
     expect(res.status).toEqual(200);
   });
+
+  it('should return JSON', async () => {
+    const res = await request(server).get('/games');
+    expect(res.type).toBe('application/json');
+  });
 });
