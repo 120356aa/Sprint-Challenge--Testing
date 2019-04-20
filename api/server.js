@@ -16,6 +16,16 @@ server.get('/games', async (req, res) => {
   res.status(200).json(rows);
 });
 
-
+// POST NEW GAME
+server.post('/games', async (req, res) => {
+  const { title, genre, releaseYear } = req.body;
+  if(!title || !genre) {
+    return res.status(422).json({ error: "Fill out the required Fields" });
+  } else {
+    games.insert({ title, genre, releaseYear })
+    .then( game => res.status(200).json({ game }))
+    .catch(err => res.status(422).json(err));
+  };
+})
 
 module.exports = server;
