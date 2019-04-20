@@ -11,4 +11,9 @@ describe('GET /games', () => {
     const res = await request(server).get('/games');
     expect(res.type).toBe('application/json');
   });
+
+  it('should return an array', async () => {
+    const res = await request(server).get('/games');
+    expect(res.body).toEqual([]);
+  });
 });
